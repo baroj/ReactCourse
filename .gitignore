@@ -6,3 +6,4 @@
 'indecision-app/node_modules/.bin/babylon' 
 /indecision-app/node_modules
 /indecision-app/yarn.lock
+/indecision-app/package-lock.json
