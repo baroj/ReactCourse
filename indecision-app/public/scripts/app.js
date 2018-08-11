@@ -1,91 +1,39 @@
 'use strict';
 
-console.log('app.js is running');
-
-// create app object title/subtitle
-//user title subtitle in template
-// render template
-
-var app = {
-    title: 'Indecision App',
-    subtitle: 'This is the subtitle for the app'
+var add = function add(a, b) {
+    return a + b;
 };
 
-// JSX - Javscript XML 
-var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        ' ',
-        app.title,
-        ' '
-    ),
-    React.createElement(
-        'p',
-        null,
-        ' ',
-        app.subtitle,
-        ' '
-    ),
-    React.createElement(
-        'ol',
-        null,
-        React.createElement(
-            'li',
-            null,
-            ' Item One '
-        ),
-        React.createElement(
-            'li',
-            null,
-            ' Item Two '
-        )
-    )
-);
-
-var appRoot = document.getElementById('app');
-ReactDOM.render(template, appRoot);
-
-//Create a templateTwo var JSX Expression
-// div 
-//  h1 -> Johnattan Barona 
-//  p -> Age: 25
-//  p-> Location: Florida
-//  Render Template Two instead of template
-
+console.log(add(5, 24));
 
 var user = {
     name: 'Johnattan',
-    age: 25,
-    location: 'Florida'
+    cities: ['NY', 'Cali', 'Deerfield'],
+    printPlacesLiver: function printPlacesLiver() {
+        var _this = this;
+
+        return this.cities.map(function (city) {
+            return _this.name + ' hasLiveIn ' + city + '!';
+        });
+
+        // this.cities.forEach( (city) => {
+        // console.log(this.name + 'has lived in city ' + city );
+        // });
+    }
 };
 
-var templateTwo = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        ' ',
-        user.name,
-        ' '
-    ),
-    React.createElement(
-        'p',
-        null,
-        ' Age: ',
-        user.age,
-        ' '
-    ),
-    React.createElement(
-        'p',
-        null,
-        ' Location: ',
-        user.location,
-        ' '
-    )
-);
+console.log(user.printPlacesLiver());
 
-//ReactDOM.render(templateTwo, appRoot);
+var multiplier = {
+    numbers: [1, 2, 3],
+    mb: 5,
+    multiply: function multiply() {
+        var _this2 = this;
+
+        return this.numbers.map(function (num) {
+            return num * _this2.mb;
+        });
+    }
+};
+
+console.log(multiplier.multiply());
