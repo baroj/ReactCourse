@@ -1,39 +1,91 @@
 'use strict';
 
-var add = function add(a, b) {
-    return a + b;
+console.log('app.js is running');
+
+var app = {
+    title: 'Indecision App',
+    subtitle: 'Put your life in hands of a computer',
+    options: []
 };
 
-console.log(add(5, 24));
+var appRoot = document.getElementById('app');
 
-var user = {
-    name: 'Johnattan',
-    cities: ['NY', 'Cali', 'Deerfield'],
-    printPlacesLiver: function printPlacesLiver() {
-        var _this = this;
+var onFormSubmit = function onFormSubmit(e) {
+    e.preventDefault();
 
-        return this.cities.map(function (city) {
-            return _this.name + ' hasLiveIn ' + city + '!';
-        });
-
-        // this.cities.forEach( (city) => {
-        // console.log(this.name + 'has lived in city ' + city );
-        // });
+    var option = e.target.elements.option.value;
+    if (option) {
+        app.options.push(option);
+        e.target.elements.option.value = '';
+        renderDyn();
     }
 };
 
-console.log(user.printPlacesLiver());
-
-var multiplier = {
-    numbers: [1, 2, 3],
-    mb: 5,
-    multiply: function multiply() {
-        var _this2 = this;
-
-        return this.numbers.map(function (num) {
-            return num * _this2.mb;
-        });
-    }
+var removeAll = function removeAll() {
+    app.options = [];
+    renderDyn();
 };
 
-console.log(multiplier.multiply());
+var renderDyn = function renderDyn() {
+    var template = React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'h1',
+            null,
+            ' ',
+            app.title,
+            ' '
+        ),
+        app.subtitle && React.createElement(
+            'p',
+            null,
+            ' ',
+            app.subtitle,
+            ' '
+        ),
+        React.createElement(
+            'p',
+            null,
+            app.options.length > 0 ? 'Here are options' : 'No options'
+        ),
+        React.createElement(
+            'p',
+            null,
+            app.options.length,
+            ' '
+        ),
+        React.createElement(
+            'button',
+            { onClick: removeAll },
+            ' Remove All '
+        ),
+        React.createElement(
+            'ol',
+            null,
+            app.options.map(function (option) {
+                return React.createElement(
+                    'li',
+                    { key: option },
+                    ' ',
+                    option,
+                    ' '
+                );
+            })
+        ),
+        React.createElement(
+            'form',
+            { onSubmit: onFormSubmit },
+            React.createElement('input', { type: 'text', name: 'option' }),
+            React.createElement(
+                'button',
+                null,
+                'Add option'
+            )
+        )
+    );
+
+    ReactDOM.render(template, appRoot);
+};
+
+renderDyn();

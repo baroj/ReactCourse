@@ -2,46 +2,50 @@ console.log('app.js is running');
 
 const app = {
   title: 'Indecision App',
-  subtitle: 'This is the subtitle for the app' ,
-  options: ['One', 'Two'] 
+  subtitle: 'Put your life in hands of a computer' ,
+  options: [] 
 };
-
-
-// JSX - Javscript XML 
-const template = (
-    <div>
-        <h1> {app.title} </h1>
-        { app.subtitle  && <p> {app.subtitle} </p>}
-        <p>{ app.options.length > 0 ? 'Here are options' : 'No options'}</p>
-        <ol>
-            <li> Item One </li>
-            <li> Item Two </li>
-        </ol>
-    </div>
-);
 
 const appRoot = document.getElementById('app');
-ReactDOM.render(template, appRoot );
 
-const user = {
-    name : 'Johnattan',
-    age : 25,
-    location : 'Florida'
+const onFormSubmit = (e) => {
+    e.preventDefault();
+
+    const option = e.target.elements.option.value;
+    if(option)
+    {
+        app.options.push(option);
+        e.target.elements.option.value = '';
+        renderDyn()
+    }
 };
 
-function getLocation(location){
-    if(location)
-        return <p> Location: {location} </p>;
-    else
-        return undefined;
-}
+const removeAll = () => {
+    app.options = [];
+    renderDyn();
+};
 
-const templateTwo = (
-    <div>
-        <h1> {user.name ? user.name : 'Anonymous'} </h1>
-         {(user.age > 18 && user.age) && <p> Age: {user.age} </p>}
-        {getLocation(user.location)}
-    </div>
-);
+const renderDyn = () => {
+    const template = (
+        <div>
+            <h1> {app.title} </h1>
+            { app.subtitle  && <p> {app.subtitle} </p>}
+            <p>{ app.options.length > 0 ? 'Here are options' : 'No options'}</p>
+            <p>{ app.options.length} </p>
+            <button onClick={removeAll}> Remove All </button>
+        
+            <ol>
+                { app.options.map( (option) => <li key={option}> {option} </li>) }
+            </ol>
+    
+            <form onSubmit={onFormSubmit}>
+                <input type="text" name="option"/>     
+                <button>Add option</button>
+            </form>
+        </div>
+    );
 
-//ReactDOM.render(templateTwo, appRoot);
+    ReactDOM.render(template, appRoot);
+};
+
+renderDyn();
