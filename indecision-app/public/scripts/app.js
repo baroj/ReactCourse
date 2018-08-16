@@ -26,6 +26,12 @@ var removeAll = function removeAll() {
     renderDyn();
 };
 
+var onMakeDecision = function onMakeDecision() {
+    var randomNum = Math.floor(Math.random() * app.options.length);
+    var option = app.options[randomNum];
+    alert(option);
+};
+
 var renderDyn = function renderDyn() {
     var template = React.createElement(
         'div',
@@ -54,6 +60,11 @@ var renderDyn = function renderDyn() {
             null,
             app.options.length,
             ' '
+        ),
+        React.createElement(
+            'button',
+            { disabled: app.options.length == 0, onClick: onMakeDecision },
+            ' What should i do? '
         ),
         React.createElement(
             'button',
