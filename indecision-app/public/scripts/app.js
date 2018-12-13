@@ -23,7 +23,7 @@ var IndecisionApp = function (_React$Component) {
         _this.handleAddOption = _this.handleAddOption.bind(_this);
         _this.handleDeleteOption = _this.handleDeleteOption.bind(_this);
         _this.state = {
-            options: props.options
+            options: []
         };
         return _this;
     }
@@ -38,7 +38,7 @@ var IndecisionApp = function (_React$Component) {
                 if (options) {
                     this.setState(function () {
                         return { options: options };
-                    });
+                    }); //Return of same value name shorthand syntax
                 }
             } catch (e) {
                 // Do nothing at all
@@ -126,10 +126,6 @@ var IndecisionApp = function (_React$Component) {
 }(React.Component);
 
 ;
-
-IndecisionApp.defaultProps = {
-    options: []
-};
 
 var Header = function Header(props) {
     return React.createElement(
