@@ -1,6 +1,6 @@
-import validator from 'validator';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
+import IndecisionApp from './components/IndecisionApp'
 
-const template = <p>sadas</p>;
-ReactDOM.render(template, document.getElementById('app'));
+ReactDOM.render(<IndecisionApp options={['Devils Den', 'Second District']}/>, document.getElementById('app'));
