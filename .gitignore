@@ -6,3 +6,10 @@
 'indecision-app/node_modules/.bin/babylon' 
 /indecision-app/node_modules
 /indecision-app/package-lock.json
+
+
+/expensify-app/node_modules
+/expensify-app/package-lock.json
+
+/boilerplate-v1/node_modules
+/boilerplate-v1/package-lock.json
