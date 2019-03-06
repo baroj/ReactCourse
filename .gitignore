@@ -13,3 +13,6 @@
 
 /boilerplate-v1/node_modules
 /boilerplate-v1/package-lock.json
+
+/portofolio-site/node_modules
+/portofolio-site/package-lock.json
